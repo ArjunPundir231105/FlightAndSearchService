@@ -1,2 +1,3 @@
-const {CityRepository} = require('./CityRepository');
-
+module.exports = {
+    CityRepository: require('./city-repository')
+};
