@@ -1,6 +1,7 @@
 const {City} = require('../models/index');
 
 class CityRepository {
+
     async createCity(name) {    
 try{
     const city = await City.create({ name });
@@ -8,8 +9,7 @@ try{
 }catch(error){
     throw{error};
 }
-    }
-
+}
     async deleteCity(cityid) {
 try{
     await City.destroy({
@@ -24,18 +24,23 @@ try{
 }
 }
 
-async updateCity(cityId, data) {
-try{
-    const city = await City.findByPk(data)
-    city.name = data.name;
-    await city.save();
-    return city;
-}
-catch(error){
-    console.log("Something went wrong in the repository layer");
-    throw{error};
-}
-}
+    async updateCity(cityId, data) {
+        try {
+            const city = await City.findByPk(cityId);
+
+            if (!city) {
+                throw new Error("City not found");
+            }
+            city.name = data.name;
+            await city.save();
+            return city;
+
+        } catch (error) {
+            console.log("Something went wrong in the repository layer");
+            throw {error};
+        }
+    }
+
 
 async getCity(cityId) {
 try{
@@ -47,6 +52,7 @@ console.log("Something went wrong in the repository layer");
 throw{error};
 }
 }
+
 async getAllCities() {
     try{
         const cities = await City.findAll();   
