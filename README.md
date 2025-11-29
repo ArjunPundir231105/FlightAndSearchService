@@ -43,3 +43,7 @@ once you have added your db config as listed above go to the src folder from you
 --City
 
 
+#Tables
+City 
+Airport
+City has many airpot and airport belongs to a city(one to many)

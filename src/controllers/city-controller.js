@@ -1,5 +1,6 @@
 const {CityService} = require('../services/index');
 
+
 const cityService = new CityService();
 
 const create = async (req,res) => {
@@ -69,6 +70,7 @@ const update = async (req, res) => {
 // GET City by ID
 const get = async (req, res) => {
     try {
+        console.log(Hello);
         const responce = await cityService.getCity(req.params.id);
         return res.status(200).json({
             data: responce,
@@ -86,10 +88,10 @@ const get = async (req, res) => {
         });
     }
 };
-
 const getAll = async (req, res) => { 
     try {
-        const cities = await cityService.getAllCities();
+        //console.log(req.params);
+        const cities = await cityService.getAllCities(req.query);
         //return cities;
         return res.status(200).json({
             data: cities,
